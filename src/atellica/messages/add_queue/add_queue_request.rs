@@ -1,4 +1,5 @@
 use bytes::{BufMut, BytesMut};
+use message_parser_macros::MessageParsers;
 
 use crate::atellica::{
     enums::{DecodeError, InterfacePositionIndex, MessageType},

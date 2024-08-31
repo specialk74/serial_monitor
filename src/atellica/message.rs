@@ -37,7 +37,7 @@ impl Message {
         self.header.sequence_id = sequence_id;
     }
 
-    fn is_my_response(&self, resp: Message) -> bool {
+    fn is_my_response(&self, resp: &Message) -> bool {
         if let Some(message_type) = self.message_body.response_message_type() {
             return self.header.sequence_id == resp.header.return_sequence_id
                 && message_type == resp.message_body.get_message_type();
@@ -113,7 +113,7 @@ mod tests {
         println!("response.encode(): {:?}", encode_response);
         println!(
             "request.is_my_response(response): {}",
-            request.is_my_response(response)
+            request.is_my_response(&response)
         );
 
         let msg_request_decoded = message_factory(&encode_request);
